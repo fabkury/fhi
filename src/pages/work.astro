@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { experience } from '../data/experience';
+import { healthProjects, makerProjects } from '../data/projects';
+---
+
+<Base title="Work & projects" description="Selected experience and open-source projects by Fabrício Kury, MD: CMS VRDC, Medicare claims, OMOP, phenotyping and more.">
+  <div class="wrap page-head">
+    <p class="eyebrow">Work</p>
+    <h1>Work & projects</h1>
+    <p class="lede">A decade of health-data work: at NIH and Columbia, in pharma and health systems, and at value-based-care companies and startups.</p>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Experience</h2>
+      {experience.map((r) => (
+        <div class="timeline-item">
+          <div class="dates">{r.dates}</div>
+          <div>
+            <h3>{r.role} · <span class="muted">{r.org}</span></h3>
+            <ul class="ticks">{r.highlights.map((h) => <li>{h}</li>)}</ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <h2>Open-source health-data tools</h2>
+      <div class="grid grid-2">{healthProjects.map((p) => <ProjectCard project={p} />)}</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Beyond health data</h2>
+      <p class="muted">Things I build end to end in my own time, from firmware to mobile apps.</p>
+      <div class="grid grid-3">{makerProjects.map((p) => <ProjectCard project={p} />)}</div>
+    </div>
+  </section>
+
+  <ContactBand />
+</Base>

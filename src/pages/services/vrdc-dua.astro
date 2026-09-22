@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactBand from '../../components/ContactBand.astro';
+---
+
+<Base
+  title="CMS VRDC Data Use Agreements"
+  description="End-to-end authorship of CMS VRDC Data Use Agreements, from study design and IRB to CMS Privacy Board approval, by a physician with 10+ years of VRDC experience."
+>
+  <div class="wrap page-head">
+    <p class="eyebrow">Flagship service</p>
+    <h1>Your CMS VRDC Data Use Agreement, written and approved</h1>
+    <p class="lede">
+      Getting access to Medicare research data in CMS's Virtual Research Data Center starts with a Data Use
+      Agreement. That means a study protocol, an IRB determination, a DUA request that justifies every file and
+      year, and a round of questions from CMS. I handle all of it, and I know the data because I've used it for a
+      decade.
+    </p>
+  </div>
+
+  <section class="section-alt">
+    <div class="wrap two">
+      <div>
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li><strong>Study design.</strong> Together we frame a research question CMS will recognize and define the cohort, and I scope the minimum necessary data: which files, which years, which variables.</li>
+          <li><strong>IRB.</strong> I write the protocol and take it through a commercial IRB (Sterling IRB), including answering the IRB's questions.</li>
+          <li><strong>DUA request.</strong> I draft the request and its supporting documents, including the justification of the data scope and the data-management narrative.</li>
+          <li><strong>CMS review.</strong> I submit the package and handle the questions until the CMS Privacy Board approves it.</li>
+          <li><strong>Handoff.</strong> Your team gets a briefing on what the DUA allows and doesn't allow, and on how to handle renewals and amendments.</li>
+        </ol>
+      </div>
+      <aside class="card side">
+        <h3>Typical timeline</h3>
+        <p class="big">~3–4 months</p>
+        <p class="muted">from kickoff to CMS approval. Queues at CMS and the IRB vary, so I'll give you a realistic estimate for your case.</p>
+        <h3>Recent result</h3>
+        <p class="muted">
+          In May 2026, the CMS Privacy Board approved the DUA I wrote for Sparx. It was the company's first VRDC access
+          and ended its reliance on an outside partner for Medicare data.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <h2>What you'll need</h2>
+        <ul class="ticks">
+          <li>A legitimate research purpose. I'll help you shape it.</li>
+          <li>An organization that can sign the DUA and meet CMS's security requirements for VRDC access.</li>
+          <li>Budget for third-party fees (CMS/VRDC access and IRB), paid directly by you.</li>
+          <li>Someone on your side who replies to questions in time.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Why me</h2>
+        <ul class="ticks">
+          <li>I'm a physician with 10+ years working with Medicare claims in the VRDC, at NIH, Wellvana and Sparx.</li>
+          <li>I know which files and variables exist and how they behave, so the data scope is right the first time.</li>
+          <li>I've written new DUAs and rebuilt existing ones to match what CMS offers today.</li>
+          <li>Once you're approved, I can also run the study.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <h2>FAQ</h2>
+      <details>
+        <summary>How is the engagement priced?</summary>
+        <p>It's a fixed fee for the whole DUA, quoted per project. You pay a small deposit at kickoff, and the balance is due only when CMS approves your DUA.</p>
+      </details>
+      <details>
+        <summary>Which data can I request?</summary>
+        <p>
+          CMS research identifiable files available in the VRDC, such as Medicare fee-for-service and Medicare
+          Advantage claims and enrollment. The request has to be limited to what your study needs, and getting that
+          scope right is a big part of what I do.
+        </p>
+      </details>
+      <details>
+        <summary>We already have a DUA. Can you help?</summary>
+        <p>Yes. I audit existing DUAs against what CMS currently offers and draft amendments to add files, years or users.</p>
+      </details>
+      <details>
+        <summary>Who owns the study and the data?</summary>
+        <p>You do. The DUA is between your organization and CMS. I act as the author and project lead on your behalf.</p>
+      </details>
+    </div>
+  </section>
+
+  <ContactBand heading="Need VRDC access?" text="Tell me about your organization and the question you want to answer. I'll tell you honestly whether a VRDC DUA fits." />
+</Base>
+
+<style>
+  .two { display: grid; gap: 32px; }
+  @media (min-width: 820px) { .two { grid-template-columns: 3fr 2fr; } }
+  .side { align-self: start; }
+  .big { font-size: 2rem; font-weight: 700; color: var(--accent); margin: 0; line-height: 1.2; }
+</style>

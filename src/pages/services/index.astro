@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactBand from '../../components/ContactBand.astro';
+import { services } from '../../data/services';
+---
+
+<Base title="Services" description="CMS VRDC Data Use Agreements, Medicare claims studies, OMOP and data-model mapping, claims and EHR reporting, and VRDC training.">
+  <div class="wrap page-head">
+    <p class="eyebrow">Services</p>
+    <h1>What I can do for you</h1>
+    <p class="lede">
+      I work with health-tech startups, ACOs and value-based care organizations, pharma and life-sciences teams, and
+      academic and nonprofit researchers. Engagements are scoped per project. Email me and I'll suggest the simplest
+      setup that gets you there.
+    </p>
+  </div>
+
+  <div class="wrap list">
+    {services.map((s, i) => (
+      <section id={s.id} class="card service">
+        <div>
+          <p class="eyebrow">{i === 0 ? 'Flagship' : `Service ${i + 1}`}</p>
+          <h2>{s.title}</h2>
+          <p>{s.summary}</p>
+          {s.href && <a class="btn btn-primary" href={s.href}>Details, process & FAQ</a>}
+        </div>
+        <div>
+          <h3>Includes</h3>
+          <ul class="ticks">{s.scope.map((x) => <li>{x}</li>)}</ul>
+          <h3>Track record</h3>
+          <ul class="ticks">{s.proof.map((x) => <li>{x}</li>)}</ul>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <ContactBand />
+</Base>
+
+<style>
+  .list { display: grid; gap: 20px; padding-bottom: 56px; }
+  .service { display: grid; gap: 24px; scroll-margin-top: 90px; }
+  @media (min-width: 820px) { .service { grid-template-columns: 1fr 1fr; padding: 32px; } }
+  .service:first-child { border-left: 4px solid var(--accent); }
+</style>

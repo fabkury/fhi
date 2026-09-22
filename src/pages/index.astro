@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
+import { site } from '../config';
+import { services } from '../data/services';
+
+const [flagship, ...others] = services;
+---
+
+<Base>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">{site.person} · {site.location}</p>
+        <h1>{site.tagline}</h1>
+        <p class="lede">
+          I'm a physician and health-data scientist. I help teams get access to claims and EHR data, map it and
+          analyze it, with 10+ years inside the CMS VRDC and the OMOP Common Data Model.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href={`mailto:${site.email}`}>Email me</a>
+          <a class="btn btn-ghost" href="/services/">See services</a>
+        </div>
+      </div>
+      <img class="headshot" src="/headshot.jpg" alt="Portrait of Fabrício Kury" width="220" height="220" />
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><strong>10+ yrs</strong><span>hands-on with CMS VRDC Medicare claims</span></div>
+        <div class="stat"><strong>87M+</strong><span>patients' claims under my custody at NIH</span></div>
+        <div class="stat"><strong>MD</strong><span>physician trained, informatics postdocs at NIH and Columbia</span></div>
+        <div class="stat"><strong>OMOP</strong><span>ETL, data quality and OHDSI tooling since 2015</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Flagship service</p>
+      <div class="card flagship">
+        <div>
+          <h2>{flagship.title}</h2>
+          <p>{flagship.summary}</p>
+          <ul class="ticks">{flagship.proof.map((p) => <li>{p}</li>)}</ul>
+          <a class="btn btn-primary" href={flagship.href}>How it works</a>
+        </div>
+        <ul class="ticks scope">{flagship.scope.map((s) => <li>{s}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <p class="eyebrow">Also available</p>
+      <h2>Data analytics & engineering</h2>
+      <div class="grid grid-2">
+        {others.map((s) => (
+          <article class="card">
+            <h3><a href={`/services/#${s.id}`}>{s.title}</a></h3>
+            <p class="muted">{s.summary}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Recent work</p>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>A startup's first VRDC access</h3>
+          <p class="muted">
+            At Sparx I wrote the study, got it through the IRB and drafted the DUA request. The CMS Privacy Board
+            approved it in May 2026.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Annual Wellness Visits, nationwide</h3>
+          <p class="muted">
+            A 100% RIF study for Wellvana of 26–27M beneficiaries per year-pair. AWVs were associated with
+            $923–$1,271 lower total cost of care the following year.
+          </p>
+        </article>
+        <article class="card">
+          <h3>FHIR → OMOP, continuously</h3>
+          <p class="muted">
+            Led a small team that built a cloud ETL from FHIR endpoints into OMOP CDM v5.4, with 10,000+ patients and
+            ongoing ingestion.
+          </p>
+        </article>
+      </div>
+      <p style="margin-top:20px"><a href="/work/">More work and open-source projects →</a></p>
+    </div>
+  </section>
+
+  <ContactBand />
+</Base>
+
+<style>
+  .hero { padding: 64px 0 56px; }
+  .hero-grid { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 820px) { .hero-grid { grid-template-columns: 1fr auto; } }
+  .headshot {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+    border: 4px solid var(--surface); box-shadow: 0 0 0 2px var(--accent);
+  }
+  @media (min-width: 820px) { .headshot { width: 220px; height: 220px; } }
+  .flagship { display: grid; gap: 24px; padding: 32px; border-left: 4px solid var(--accent); }
+  @media (min-width: 820px) { .flagship { grid-template-columns: 3fr 2fr; } }
+  .flagship .scope { align-self: center; background: var(--accent-soft); border-radius: var(--radius); padding: 20px 20px 12px; }
+</style>

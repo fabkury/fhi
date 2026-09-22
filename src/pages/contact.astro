@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+---
+
+<Base title="Contact" description="Contact Fabrício Kury, MD, at Fab Health Informatics about VRDC DUAs, Medicare studies and health-data projects.">
+  <div class="wrap page-head">
+    <p class="eyebrow">Contact</p>
+    <h1>Let's talk about your data</h1>
+    <p class="lede">The fastest way to reach me is email. I read and reply to every message personally.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap grid grid-2">
+      <div class="card">
+        <h2>Helpful to include</h2>
+        <ul class="ticks">
+          <li>Your organization and your role</li>
+          <li>The question you want answered, or the problem you want solved</li>
+          <li>The data involved (VRDC, CCLF, EHR, OMOP…) and where it lives today</li>
+          <li>Your timeline and any hard deadlines</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Elsewhere</h2>
+        <ul class="ticks">
+          <li><a href={site.links.linkedin}>LinkedIn</a></li>
+          <li><a href={site.links.github}>GitHub</a></li>
+          <li><a href={site.links.scholar}>Google Scholar</a></li>
+        </ul>
+        <p class="muted">{site.legalName} · {site.location}</p>
+      </div>
+    </div>
+  </section>
+</Base>

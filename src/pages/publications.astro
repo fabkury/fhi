@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+import { publications, talks } from '../data/publications';
+---
+
+<Base title="Publications" description="Selected publications and talks by Fabrício Kury, MD, on Medicare claims, terminologies, OMOP and clinical trial eligibility.">
+  <div class="wrap page-head">
+    <p class="eyebrow">Research</p>
+    <h1>Publications</h1>
+    <p class="lede">A selection. The full list is on <a href={site.links.scholar}>Google Scholar</a>.</p>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <ol class="pubs">
+        {publications.map((p) => (
+          <li>
+            <p class="title">{p.href ? <a href={p.href}>{p.title}</a> : p.title}</p>
+            <p class="muted">{p.authors}. <em>{p.venue}</em>, {p.year}.</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <h2>Talks</h2>
+      <ul class="ticks">
+        {talks.map((t) => <li><strong>{t.title}</strong>: {t.venue} ({t.year})</li>)}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .pubs { padding-left: 1.2em; margin: 0; }
+  .pubs li { margin-bottom: 20px; }
+  .pubs p { margin: 0; }
+  .title { font-weight: 600; }
+</style>

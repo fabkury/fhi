@@ -1,0 +1,121 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { site, nav } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.description } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.tagline}`;
+const path = Astro.url.pathname;
+const canonical = new URL(path, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/headshot.jpg', Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: site.legalName,
+      url: Astro.site,
+      email: site.email,
+      areaServed: 'US',
+      address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
+      founder: { '@type': 'Person', name: 'Fabrício Kury', honorificSuffix: 'MD', sameAs: Object.values(site.links) },
+    })} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href="/" aria-label={`${site.name}, home`}>
+          <span class="mark">FHI</span>
+          <span class="brand-name">Fab Health Informatics</span>
+        </a>
+        <nav aria-label="Main">
+          <ul class="clean">
+            {nav.map((item) => (
+              <li><a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a></li>
+            ))}
+            <li><a class="btn btn-primary nav-cta" href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap foot">
+        <div>
+          <strong>{site.legalName}</strong><br />
+          <span class="muted">{site.location} · <a href={`mailto:${site.email}`}>{site.email}</a></span>
+        </div>
+        <ul class="clean links">
+          <li><a href={site.links.linkedin} rel="me">LinkedIn</a></li>
+          <li><a href={site.links.github} rel="me">GitHub</a></li>
+          <li><a href={site.links.scholar} rel="me">Google Scholar</a></li>
+        </ul>
+        <p class="muted small">© {new Date().getFullYear()} {site.legalName}</p>
+      </div>
+    </footer>
+
+    {site.cfAnalyticsToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: site.cfAnalyticsToken })}
+      ></script>
+    )}
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; padding-block: 8px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 700; }
+  .mark {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px;
+    background: var(--navy); color: #fff; font-size: 0.85rem; letter-spacing: 0.04em;
+    box-shadow: inset 0 -3px 0 var(--accent);
+  }
+  .brand-name { font-size: 1rem; }
+  nav ul { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+  nav a { color: var(--text); text-decoration: none; font-size: 0.95rem; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--accent); }
+  nav a.nav-cta { color: #fff; padding: 8px 16px; }
+  @media (max-width: 719px) {
+    .brand-name { display: none; }
+    nav ul { gap: 4px 14px; }
+    nav a { font-size: 0.9rem; }
+  }
+  .site-footer { border-top: 1px solid var(--line); padding: 32px 0; margin-top: 0; }
+  .foot { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .foot { grid-template-columns: 1fr auto; align-items: start; } .foot .small { grid-column: 1 / -1; } }
+  .links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .small { font-size: 0.85rem; margin: 0; }
+</style>

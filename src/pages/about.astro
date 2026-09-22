@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactBand from '../components/ContactBand.astro';
+import { site } from '../config';
+---
+
+<Base title="About" description="About Fabrício Kury, MD: physician, health-data scientist and founder of Fab Health Informatics, LLC.">
+  <div class="wrap page-head about">
+    <img class="headshot" src="/headshot.jpg" alt="Portrait of Fabrício Kury" width="160" height="160" />
+    <div>
+      <p class="eyebrow">About</p>
+      <h1>Fabrício Kury, MD</h1>
+      <p class="lede">Physician and healthcare data scientist in New York, working through my company, {site.legalName}.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap prose">
+      <p>
+        I trained as a physician in Brazil. After med school I went to the U.S. National Library of Medicine at NIH and
+        spent 3.5 years as custodian of CMS Medicare claims for 87M+ patients, with 16+ years of follow-up and billions
+        of rows. That work led to papers in the <em>Journal of Clinical Oncology</em> and at AMIA, and to the NLM
+        Special Act or Service Award in 2017. I then did a postdoc at Columbia's Department of Biomedical Informatics,
+        where I built the Chia corpus, published in <em>Scientific Data</em>.
+      </p>
+      <p>
+        Since then I've worked across health data. I was the first Chief Data Officer of a health-insurance startup.
+        I was a clinical informatics lead at the Regeneron Genetics Center and the OMOP/OHDSI reference at Mount Sinai.
+        I led value-based-care data science at Wellvana, and I now build data products at Sparx, a New York health-tech
+        startup. The constant is Medicare claims and the OMOP Common Data Model, and translating between what the codes
+        say and what happened to the patient.
+      </p>
+      <p>
+        I take on selected contract work through Fab Health Informatics: CMS VRDC Data Use Agreements, Medicare
+        studies, data-model mapping and reporting.
+      </p>
+
+      <h2>At a glance</h2>
+      <ul class="ticks">
+        <li><strong>Education:</strong> M.D., Federal University of Rio de Janeiro (2014), with study abroad at Harvard Medical School and the NIH Clinical Center. Postdoctoral fellowships at NIH/NLM and Columbia.</li>
+        <li><strong>Data:</strong> CMS VRDC (RIF, SAS and Databricks), CCLF, Medicare FFS/MA, Medicaid, OMOP CDM, FHIR.</li>
+        <li><strong>Terminologies:</strong> ICD-9/10, SNOMED, CPT, HCPCS, LOINC, NDC, ATC, RxNorm.</li>
+        <li><strong>Methods:</strong> electronic phenotyping, cohort discovery, regression, survival analysis, program evaluation and real-world evidence.</li>
+        <li><strong>Tools:</strong> Python, R, SQL, SAS, dbt, Databricks, AWS, GCP.</li>
+        <li><strong>Languages:</strong> English, Portuguese (native) and Spanish. Happy to work with teams in Brazil and Latin America.</li>
+      </ul>
+    </div>
+  </section>
+
+  <ContactBand />
+</Base>
+
+<style>
+  .about { display: grid; gap: 24px; align-items: center; }
+  @media (min-width: 720px) { .about { grid-template-columns: auto 1fr; } }
+  .headshot { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--accent); }
+  .prose { max-width: 760px; }
+  .prose h2 { margin-top: 1.6em; }
+</style>

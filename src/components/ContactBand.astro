@@ -1,0 +1,23 @@
+---
+import { site } from '../config';
+
+interface Props {
+  heading?: string;
+  text?: string;
+}
+
+const {
+  heading = 'Have a project in mind?',
+  text = 'Email me a few lines about your data, your question and your timeline. I reply personally.',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>{heading}</h2>
+    <p class="lede">{text}</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+</section>
