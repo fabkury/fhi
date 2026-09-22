@@ -15,7 +15,7 @@ export const site = {
     scholar: 'https://scholar.google.com/citations?user=MyXCkYkAAAAJ',
   },
   // Cloudflare Web Analytics token. Leave empty to disable analytics entirely.
-  cfAnalyticsToken: '',
+  cfAnalyticsToken: 'd70f88ba608446c1818b35caac4f9367',
 };
 
 export const nav = [
